@@ -44,8 +44,13 @@ public class TruckService {
         HttpHeaders headers = new HttpHeaders();
         headers.set("Accept", "application/json");
         headers.set("Content-Type", "application/json");
+        
+        TruckPosition lastTruckPosition = getLastTruckPosition(truckId);
+        if (lastTruckPosition == null) {
+            return null;
+        }
 
-        Position position = getLastTruckPosition(truckId).getPosition();
+        Position position = lastTruckPosition.getPosition();
         
         HttpEntity<Position> entity = new HttpEntity<>(position, headers);
 
