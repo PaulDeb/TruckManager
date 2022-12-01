@@ -24,4 +24,9 @@ public class Position {
     public String toJSON() {
         return String.format("{\"latitude\": %f, \"longitude\": %f}", latitude, longitude);
     }
+
+    @Override
+    public String toString() {
+        return String.format("Position [latitude=%s, longitude=%s]", latitude, longitude);
+    }
 }

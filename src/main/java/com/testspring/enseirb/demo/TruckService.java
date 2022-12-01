@@ -7,11 +7,11 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
-@Component
+@Service
 public class TruckService {
     private final Map<Integer, Stack<TruckPosition>> trucks;
     private final RestTemplate restTemplate = new RestTemplate();

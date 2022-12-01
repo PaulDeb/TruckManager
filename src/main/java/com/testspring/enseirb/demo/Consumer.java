@@ -11,10 +11,12 @@ public class Consumer {
     private final Logger logger = LoggerFactory.getLogger(Consumer.class);
 
     @Autowired TruckService truckService; 
+    @Autowired AlertService alertService;
 
-    @KafkaListener(id = "paul-consumer", topics = "trucks.position")
+    @KafkaListener(groupId = "paul-trucks", topics = "trucks.position")
     public void consume(TruckPosition truckPosition) {
+        logger.info(String.format("TRUCK POSITION -> Consumed message -> %s", truckPosition));
         truckService.addTruckPosition(truckPosition);
-        // logger.info(String.format("#### -> Consumed message -> %s", truckPosition));
+        alertService.checkAndPublish(truckPosition);
     }
 }
